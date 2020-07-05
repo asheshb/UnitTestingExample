@@ -1,19 +1,25 @@
 package com.example.unittestingexample
 
 import android.content.Context
-import android.os.Build
-import androidx.test.core.app.ApplicationProvider
+import org.hamcrest.core.Is.`is`
+
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.runners.MockitoJUnitRunner
 
-@RunWith(AndroidJUnit4::class)
-@Config(sdk =  [Build.VERSION_CODES.P])
+private const val ERROR_VALID_EMAIL = "The email is not valid"
+private const val SUCCESS_VALID_EMAIL = "The email validated successfully"
+
+
+@RunWith(MockitoJUnitRunner::class)
 class ShoppingCartTest{
+    @Mock
+    private lateinit var mockContext: Context
+
     private lateinit var shoppingCart: ShoppingCart
 
     @Before
@@ -38,15 +44,21 @@ class ShoppingCartTest{
 
     @Test
     fun validateEmail_ValidEmail_ReturnsTrue(){
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val(result, message) = shoppingCart.validateEmail(context, "customer@example.com")
+        `when`(mockContext.getString(R.string.success_valid_email))
+            .thenReturn(SUCCESS_VALID_EMAIL)
+
+        val(result, message) = shoppingCart.validateEmail(mockContext, "customer@example.com")
         assertTrue(result)
+        assertThat(message, `is`(SUCCESS_VALID_EMAIL))
     }
 
     @Test
     fun validateEmail_InvalidEmail_ReturnsFalse(){
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val(result, message) = shoppingCart.validateEmail(context, "customerexample.com")
+        `when`(mockContext.getString(R.string.error_valid_email))
+            .thenReturn(ERROR_VALID_EMAIL)
+
+        val(result, message) = shoppingCart.validateEmail(mockContext, "customerexample.com")
         assertFalse(result)
+        assertThat(message, `is`(ERROR_VALID_EMAIL))
     }
 }
