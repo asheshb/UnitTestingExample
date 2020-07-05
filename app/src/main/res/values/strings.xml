@@ -9,4 +9,7 @@
     <string name="calculate_amount">Calculate Amount</string>
     <string name="discount_info">Discount: 3–5 pieces 10%, above 5 pieces 15%</string>
     <string name="error_empty">Please enter a quantity</string>
+
+    <string name="error_valid_email">The email is not valid</string>
+    <string name="success_valid_email">The email validated successfully</string>
 </resources>
