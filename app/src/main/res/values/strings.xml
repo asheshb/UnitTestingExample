@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Unit Testing Example</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="product">Product:</string>
+    <string name="price">Price:</string>
+    <string name="swift_running_shoes_xl_red_color">Swift Running Shoes, XL, Red color</string>
+    <string name="amount">Amount:</string>
+    <string name="qty">Qty:</string>
+    <string name="calculate_amount">Calculate Amount</string>
+    <string name="discount_info">Discount: 3–5 pieces 10%, above 5 pieces 15%</string>
+    <string name="error_empty">Please enter a quantity</string>
+</resources>
