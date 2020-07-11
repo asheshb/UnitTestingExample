@@ -9,7 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.runners.MockitoJUnitRunner
+import org.mockito.junit.MockitoJUnitRunner
 
 private const val ERROR_VALID_EMAIL = "The email is not valid"
 private const val SUCCESS_VALID_EMAIL = "The email validated successfully"
