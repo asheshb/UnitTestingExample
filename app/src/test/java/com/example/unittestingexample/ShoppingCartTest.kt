@@ -22,6 +22,20 @@ class ShoppingCartTest{
     }
 
     @Test
+    fun validateEmail_ValidEmail_ReturnsTrue(){
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val(result, message) = shoppingCart.validateEmail(context, "customer@example.com")
+        assertTrue(result)
+    }
+
+    @Test
+    fun validateEmail_InvalidEmail_ReturnsFalse(){
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val(result, message) = shoppingCart.validateEmail(context, "customerexample.com")
+        assertFalse(result)
+    }
+
+    @Test
     fun calculateAmount_PriceQty_ReturnsNoDiscountAmount(){
         assertEquals(5000F, shoppingCart.calculateAmount(2500F, 2))
     }
@@ -34,19 +48,5 @@ class ShoppingCartTest{
     @Test
     fun calculateAmount_PriceQty_ReturnsFifteenPercentDiscountAmount(){
         assertEquals(12750F, shoppingCart.calculateAmount(2500F, 6))
-    }
-
-    @Test
-    fun validateEmail_ValidEmail_ReturnsTrue(){
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val(result, message) = shoppingCart.validateEmail(context, "customer@example.com")
-        assertTrue(result)
-    }
-
-    @Test
-    fun validateEmail_InvalidEmail_ReturnsFalse(){
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        val(result, message) = shoppingCart.validateEmail(context, "customerexample.com")
-        assertFalse(result)
     }
 }
