@@ -9,7 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import org.mockito.runners.MockitoJUnitRunner
+import org.mockito.junit.MockitoJUnitRunner
 
 private const val ERROR_VALID_EMAIL = "The email is not valid"
 private const val SUCCESS_VALID_EMAIL = "The email validated successfully"
@@ -25,21 +25,6 @@ class ShoppingCartTest{
     @Before
     fun setup(){
         shoppingCart = ShoppingCart()
-    }
-
-    @Test
-    fun calculateAmount_PriceQty_ReturnsNoDiscountAmount(){
-        assertEquals(5000F, shoppingCart.calculateAmount(2500F, 2))
-    }
-
-    @Test
-    fun calculateAmount_PriceQty_ReturnsTenPercentDiscountAmount(){
-        assertEquals(9000F, shoppingCart.calculateAmount(2500F, 4))
-    }
-
-    @Test
-    fun calculateAmount_PriceQty_ReturnsFifteenPercentDiscountAmount(){
-        assertEquals(12750F, shoppingCart.calculateAmount(2500F, 6))
     }
 
     @Test
@@ -60,5 +45,20 @@ class ShoppingCartTest{
         val(result, message) = shoppingCart.validateEmail(mockContext, "customerexample.com")
         assertFalse(result)
         assertThat(message, `is`(ERROR_VALID_EMAIL))
+    }
+
+    @Test
+    fun calculateAmount_PriceQty_ReturnsNoDiscountAmount(){
+        assertEquals(5000F, shoppingCart.calculateAmount(2500F, 2))
+    }
+
+    @Test
+    fun calculateAmount_PriceQty_ReturnsTenPercentDiscountAmount(){
+        assertEquals(9000F, shoppingCart.calculateAmount(2500F, 4))
+    }
+
+    @Test
+    fun calculateAmount_PriceQty_ReturnsFifteenPercentDiscountAmount(){
+        assertEquals(12750F, shoppingCart.calculateAmount(2500F, 6))
     }
 }
