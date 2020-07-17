@@ -15,12 +15,12 @@ class ShoppingCartErrorMessageTest{
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java)
 
-        @Test
-        fun calculateAmount_ShowErrorMessage(){
-            onView(withId(R.id.product_qty)).perform(typeText(""))
-            onView(withId(R.id.calculate_amount)).perform(click())
-            onView(withId(R.id.product_error_message)).check(matches(isDisplayed()))
-        }
+    @Test
+    fun calculateAmount_ShowErrorMessage(){
+        onView(withId(R.id.product_qty)).perform(typeText(""))
+        onView(withId(R.id.calculate_amount)).perform(click())
+        onView(withId(R.id.product_error_message)).check(matches(isDisplayed()))
+    }
 
     @Test
     fun calculateAmount_NotShowErrorMessage(){
